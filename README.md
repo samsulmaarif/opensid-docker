@@ -13,6 +13,12 @@ docker build -t opensid .
 
 ## Usage
 
+To use this instance, you will need **samsulmaarif/mysql**, pull it first:
+
+```
+docker pull samsulmaarif/mysql
+```
+
 To spawn a new instance of OpenSID:
 
 ```

@@ -1,4 +1,4 @@
-docker-mysql
+docker-mysql [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 ============
 
 This repo is based on [CenturyLinkLabs](https://github.com/CenturyLinkLabs/docker-mysql)
@@ -14,3 +14,7 @@ Environment variables
  - `MYSQL_USER`: A user to create that has access to the database specified by `MYSQL_DATABASE`.
  - `MYSQL_PASSWORD`: The password for `MYSQL_USER`. Defaults to a blank password.
 
+NOTE
+----
+
+**opensid** database is already created in this image.
