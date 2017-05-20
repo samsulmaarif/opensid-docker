@@ -27,6 +27,7 @@ RUN apt-get update \
 	&& chmod +x /etc/apache2/foreground.sh
 
 COPY database.php /var/www/html/desa/config/database.php
+COPY my.cnf /etc/mysql/conf.d/my.cnf
 RUN chmod +x ./start.sh && ./start.sh
 
 #RUN a2enmod ssl && a2ensite default-ssl # if using proxy, don't need actually secure connection
