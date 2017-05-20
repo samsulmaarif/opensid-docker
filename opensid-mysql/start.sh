@@ -8,7 +8,7 @@ MYSQL_ROOT_PASSWORD=opensid
 MYSQL_DATABASE=opensid
 MYSQL_USER=opensid
 MYSQL_PASSWORD=opensid
-DB_FILE=/var/www/html/*.sql
+DB_FILE=/root/contoh.sql
 
 
 tfile=`mktemp`
