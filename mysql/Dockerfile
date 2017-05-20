@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get -y upgrade
 
 # Add image configuration and scripts
-RUN apt-get install -y mysql-server unzip
+RUN apt-get install -y mysql-server unzip wget
 ADD my.cnf /etc/mysql/conf.d/my.cnf 
 ADD start.sh /root/start.sh
 RUN chmod +x /root/start.sh \
@@ -15,7 +15,7 @@ RUN chmod +x /root/start.sh \
 	&& unzip opensid.zip \
 	&& cp OpenSID-master/*.sql /root/contoh.sql \
 	&& rm -rf OpenSID-master \
-	&& apt-get purge -y unzip
+	&& apt-get purge -y unzip wget
 
 VOLUME ["/var/lib/mysql"]
 CMD ["/root/start.sh"]
