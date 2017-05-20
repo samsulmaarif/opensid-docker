@@ -14,6 +14,7 @@ ENV MYSQL_DB opensid
 #ENV OPENSID_URL http://192.168.59.103
 
 ADD ./foreground.sh /etc/apache2/foreground.sh
+ADD ./start.sh /root/start.sh
 
 RUN apt-get update \
 	&& apt-get -y install mysql-server mysql-client pwgen python-setuptools curl git unzip apache2 php5 \
@@ -24,11 +25,13 @@ RUN apt-get update \
 	&& git clone https://github.com/eddieridwan/OpenSID.git /var/www/html --depth=1 \
 	&& cp -a /var/www/html/desa-contoh /var/www/html/desa \
 	&& chown -R www-data:www-data /var/www/html \
-	&& chmod +x /etc/apache2/foreground.sh
+	&& chmod +x /etc/apache2/foreground.sh \
+	&& chmod +x /root/start.sh
 
 COPY database.php /var/www/html/desa/config/database.php
 COPY my.cnf /etc/mysql/conf.d/my.cnf
-RUN chmod +x ./start.sh && ./start.sh
+
+RUN /root/start.sh
 
 #RUN a2enmod ssl && a2ensite default-ssl # if using proxy, don't need actually secure connection
 
