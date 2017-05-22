@@ -16,10 +16,9 @@ ENV DEBIAN_FRONTEND noninteractive
 ADD ./foreground.sh /etc/apache2/foreground.sh
 
 RUN apt-get update \
-	&& apt-get -y install mysql-client pwgen python-setuptools curl git unzip apache2 php5 \
+	&& apt-get -y install mysql-client pwgen python-setuptools curl git unzip apache2 \
 		php5-gd libapache2-mod-php5 postfix wget supervisor curl vim-nox libcurl3 \
-		libcurl3-dev php5-curl php5-xmlrpc php5-intl php5-mysql git-core \
-	&& cd /tmp \
+		libcurl3-dev php5-curl php5-xmlrpc php5-intl php5-mysql git-core php5 \
 	&& rm -rf /var/www/html \
 	&& git clone https://github.com/eddieridwan/OpenSID.git /var/www/html --depth=1 \
 	&& cp -a /var/www/html/desa-contoh /var/www/html/desa \

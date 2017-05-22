@@ -33,9 +33,12 @@ RUN apt-get update \
 COPY database.php /var/www/html/desa/config/database.php
 COPY my.cnf /etc/mysql/conf.d/my.cnf
 
-RUN /root/start.sh \
-	&& service mysql restart \
-	&& mysql -u root -popensid opensid < /root/contoh.sql
+RUN /bin/bash -c "/usr/bin/mysqld_safe &" \
+	&& sleep 5 \
+	&& mysql -u root -e "CREATE USER opensid;" \
+	&& mysql -u root -e "CREATE DATABASE IF NOT EXISTS 'opensid' CHARACTER SET utf8 COLLATE utf8_general_ci;" \
+	&& mysql -u root -e "GRANT ALL ON 'opensid'.* to 'opensid'@'%' IDENTIFIED BY 'opensid';" \
+	&& mysql -u root opensid < /root/contoh.sql
 
 #RUN a2enmod ssl && a2ensite default-ssl # if using proxy, don't need actually secure connection
 

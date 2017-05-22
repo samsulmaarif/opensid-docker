@@ -26,3 +26,5 @@ EOF
 
 /usr/sbin/mysqld --bootstrap --verbose=0 < $tfile
 rm -f $tfile
+
+exec /usr/sbin/mysqld
