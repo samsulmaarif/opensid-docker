@@ -7,7 +7,7 @@
 // File ini JANGAN di-commit ke GIT. TAMBAHKAN di .gitignore
 // -------------------------------------------------------------------------
 
-$db['default']['hostname'] = 'localhost';
+$db['default']['hostname'] = getenv('DB_PORT_3306_TCP_ADDR');
 $db['default']['username'] = 'opensid';
 $db['default']['password'] = 'opensid';
 $db['default']['database'] = 'opensid';

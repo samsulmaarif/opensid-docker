@@ -8,18 +8,19 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Database info
 #ENV MYSQL_HOST 127.0.0.1
-#ENV MYSQL_USER opensid
-#ENV MYSQL_PASSWORD opensid
-#ENV MYSQL_DB opensid
+ENV MYSQL_USER opensid
+ENV MYSQL_PASSWORD opensid
+ENV MYSQL_DB opensid
 #ENV OPENSID_URL http://192.168.59.103
+ENV DB_FILE=/root/contoh.sql
 
 ADD ./foreground.sh /etc/apache2/foreground.sh
 ADD ./start.sh /root/start.sh
 
 RUN apt-get update \
-	&& apt-get -y install mysql-server mysql-client pwgen python-setuptools curl git unzip apache2 php5 \
-		php5-gd libapache2-mod-php5 postfix wget supervisor curl libcurl3 \
-		libcurl3-dev php5-curl php5-xmlrpc php5-intl php5-mysql git-core \
+	&& apt-get -y install mysql-server mysql-client pwgen python-setuptools curl git \
+		php5-gd libapache2-mod-php5 wget supervisor curl libcurl3 vim-nox apache2 php5 \
+		libcurl3-dev php5-curl php5-xmlrpc php5-intl php5-mysql git-core unzip \
 	&& cd /tmp \
 	&& rm -rf /var/www/html \
 	&& git clone https://github.com/eddieridwan/OpenSID.git /var/www/html --depth=1 \
@@ -32,12 +33,16 @@ RUN apt-get update \
 COPY database.php /var/www/html/desa/config/database.php
 COPY my.cnf /etc/mysql/conf.d/my.cnf
 
+RUN /root/start.sh \
+	&& service mysql restart \
+	&& mysql -u root -popensid opensid < /root/contoh.sql
+
 #RUN a2enmod ssl && a2ensite default-ssl # if using proxy, don't need actually secure connection
 
 VOLUME ["/var/lib/mysql"]
 VOLUME ["/var/www/html"]
 
-CMD ["/root/start.sh"]
+CMD ["/usr/sbin/mysqld"]
 
 CMD ["/etc/apache2/foreground.sh"]
 

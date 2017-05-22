@@ -28,11 +28,6 @@ if [[ $MYSQL_DATABASE != "" ]]; then
         echo "GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';" >> $tfile
     fi
 
-    if [[ -f /root/contoh.sql ]]; then
-	echo "CREATE DATABASE opensid;" >> $tfile
-	echo "USE opensid;" >> $tfile
-	echo "SOURCE /root/contoh.sql;" >> $tfile
-    fi
 fi
 
 /usr/sbin/mysqld --bootstrap --verbose=0 < $tfile

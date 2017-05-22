@@ -14,11 +14,16 @@ docker build -t opensid .
 
 ## Usage
 
+Pull it first :
+
+```
+docker pull samsulmaarif/opensid-aio
+```
 
 To spawn a new instance of OpenSID:
 
 ```
-docker run -d -P --name opensid -p 8080:80 samsulmaarif/opensid
+docker run -d -P --name opensid -p 8080:80 samsulmaarif/opensid-aio
 ```
 
 You can visit the following URL in a browser to get started:

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-chown -R www-data:www-data /var/www/html
+chown -Rf www-data:www-data /var/www/html
 
 read pid cmd state ppid pgrp session tty_nr tpgid rest < /proc/self/stat
 trap "kill -TERM -$pgrp; exit" EXIT TERM KILL SIGKILL SIGTERM SIGQUIT

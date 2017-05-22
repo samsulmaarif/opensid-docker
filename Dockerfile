@@ -17,7 +17,7 @@ ADD ./foreground.sh /etc/apache2/foreground.sh
 
 RUN apt-get update \
 	&& apt-get -y install mysql-client pwgen python-setuptools curl git unzip apache2 php5 \
-		php5-gd libapache2-mod-php5 postfix wget supervisor curl libcurl3 \
+		php5-gd libapache2-mod-php5 postfix wget supervisor curl vim-nox libcurl3 \
 		libcurl3-dev php5-curl php5-xmlrpc php5-intl php5-mysql git-core \
 	&& cd /tmp \
 	&& rm -rf /var/www/html \
@@ -30,5 +30,6 @@ COPY database.php /var/www/html/desa/config/database.php
 
 #RUN a2enmod ssl && a2ensite default-ssl # if using proxy, don't need actually secure connection
 
-CMD ["/etc/apache2/foreground.sh"]
+VOLUME ["/var/www/html"]
 
+CMD ["/etc/apache2/foreground.sh"]

@@ -17,4 +17,4 @@ Environment variables
 NOTE
 ----
 
-**opensid** database is already created in this image.
+**opensid** database is already created in this image with user and password : **opensid**.
