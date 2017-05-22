@@ -10,21 +10,18 @@ RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y mysql-server unzip wget
 
 ADD my.cnf /etc/mysql/conf.d/my.cnf 
-ADD start.sh /root/start.sh
+#ADD start.sh /root/start.sh
+ADD import.sh /root/import.sh
 
-RUN chmod +x /root/start.sh \
+RUN chmod +x /root/import.sh \
 	&& wget -O opensid.zip https://github.com/eddieridwan/OpenSID/archive/master.zip \
 	&& unzip opensid.zip \
 	&& cp OpenSID-master/*.sql /root/contoh.sql \
 	&& rm -rf OpenSID-master \
-	&& apt-get purge -y unzip wget \
-	&& /usr/bin/mysqld_safe & \
-	&& sleep 5 \
-	&& mysql -u root -e "CREATE USER opensid;" \
-	&& mysql -u root -e "CREATE DATABASE IF NOT EXISTS 'opensid' CHARACTER SET utf8 COLLATE utf8_general_ci;" \
-	&& mysql -u root -e "GRANT ALL ON 'opensid'.* to 'opensid'@'%' IDENTIFIED BY 'opensid';" \
-	&& mysql -u root opensid < /root/contoh.sql
+	&& apt-get purge -y unzip wget
+
+RUN /root/import.sh
 
 VOLUME ["/var/lib/mysql"]
 
-CMD ["/root/start.sh"]
+CMD ["/usr/sbin/mysqld"]

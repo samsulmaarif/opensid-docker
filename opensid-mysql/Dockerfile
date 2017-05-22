@@ -15,30 +15,24 @@ ENV MYSQL_DB opensid
 ENV DB_FILE=/root/contoh.sql
 
 ADD ./foreground.sh /etc/apache2/foreground.sh
-ADD ./start.sh /root/start.sh
+ADD ./import.sh /root/import.sh
 
 RUN apt-get update \
 	&& apt-get -y install mysql-server mysql-client pwgen python-setuptools curl git \
 		php5-gd libapache2-mod-php5 wget supervisor curl libcurl3 vim-nox apache2 php5 \
 		libcurl3-dev php5-curl php5-xmlrpc php5-intl php5-mysql git-core unzip \
-	&& cd /tmp \
 	&& rm -rf /var/www/html \
 	&& git clone https://github.com/eddieridwan/OpenSID.git /var/www/html --depth=1 \
 	&& cp -a /var/www/html/desa-contoh /var/www/html/desa \
 	&& cp /var/www/html/*.sql /root/contoh.sql \
 	&& chown -R www-data:www-data /var/www/html \
 	&& chmod +x /etc/apache2/foreground.sh \
-	&& chmod +x /root/start.sh
+	&& chmod +x /root/import.sh
 
 COPY database.php /var/www/html/desa/config/database.php
 COPY my.cnf /etc/mysql/conf.d/my.cnf
 
-RUN /bin/bash -c "/usr/bin/mysqld_safe &" \
-	&& sleep 5 \
-	&& mysql -u root -e "CREATE USER opensid;" \
-	&& mysql -u root -e "CREATE DATABASE IF NOT EXISTS 'opensid' CHARACTER SET utf8 COLLATE utf8_general_ci;" \
-	&& mysql -u root -e "GRANT ALL ON 'opensid'.* to 'opensid'@'%' IDENTIFIED BY 'opensid';" \
-	&& mysql -u root opensid < /root/contoh.sql
+RUN /root/import.sh
 
 #RUN a2enmod ssl && a2ensite default-ssl # if using proxy, don't need actually secure connection
 
