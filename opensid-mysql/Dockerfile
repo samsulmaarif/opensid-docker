@@ -39,7 +39,7 @@ RUN /root/import.sh
 VOLUME ["/var/lib/mysql"]
 VOLUME ["/var/www/html"]
 
-CMD ["/usr/sbin/mysqld"]
+#CMD ["/usr/sbin/mysqld"]
 
 CMD ["/etc/apache2/foreground.sh"]
 
