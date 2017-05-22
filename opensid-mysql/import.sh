@@ -1,5 +1,5 @@
 #!/bin/bash 
-/usr/bin/mysqld &
+/usr/sbin/mysqld &
 sleep 5
 mysql -u root -e "CREATE USER opensid;" 
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS 'opensid' CHARACTER SET utf8 COLLATE utf8_general_ci;" 
