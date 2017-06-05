@@ -1,5 +1,7 @@
-docker-mysql [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+docker-mysql 
 ============
+
+[![](https://images.microbadger.com/badges/image/samsulmaarif/mysql.svg)](https://microbadger.com/images/samsulmaarif/mysql "Get your own image badge on microbadger.com") [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 This repo is based on [CenturyLinkLabs](https://github.com/CenturyLinkLabs/docker-mysql)
 
