@@ -1,8 +1,10 @@
 ## OpenSID Docker
 
- OpenSID adalah Sistem Informasi Desa (SID) yang sengaja dibuat supaya terbuka dan dapat dikembangkan bersama-sama oleh komunitas peduli SID. Lebih lengkap mengenai ini silakan menuju ke repo [OpenSID](https://github.com/OpenSID/OpenSID).
+OpenSID adalah Sistem Informasi Desa (SID) yang sengaja dibuat supaya terbuka dan dapat dikembangkan bersama-sama oleh komunitas peduli SID. Lebih lengkap mengenai ini silakan menuju ke repo [OpenSID](https://github.com/OpenSID/OpenSID).
 
 Repositori ini merupakan sekumpulan berkas pendukung jika Anda menginginkan melakukan instalasi OpenSID menggunakan Docker Container dan Docker Compose.
+
+> **CATATAN**: Panduan yang lebih lengkap dapat dibaca di [Wiki OpenSID](https://github.com/OpenSID/OpenSID/wiki/Instalasi-OpenSID-dengan-Docker-Container)
 
 Langkah Instalasinya adalah sebagai berikut: yang pertama, kita perlu clone repo OpenSID.
 
@@ -60,7 +62,7 @@ $db['default']['password'] = 'rahasia';
 $db['default']['database'] = 'opensid';
 ```
 
-> *CATATAN*: db hostname harus ditulis sebagai `db`, jika tidak, aplikasi akan error karena tidak dapat terhubung dengan database. Kecuali Anda mengubah file `docker-compose.yml` pada bagian nama service db.
+> **CATATAN**: db hostname harus ditulis sebagai `db`, jika tidak, aplikasi akan error karena tidak dapat terhubung dengan database. Kecuali Anda mengubah file `docker-compose.yml` pada bagian nama service db.
 
 Jika proses di atas sudah dilakukan, sekarang saatnya kita jalankan proses deployment-nya.
 
